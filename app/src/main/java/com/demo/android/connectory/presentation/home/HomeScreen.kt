@@ -1,17 +1,16 @@
 package com.demo.android.connectory.presentation.home
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxWithConstraints
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.demo.android.connectory.R
 import com.demo.android.connectory.presentation.component.EmployeeCard
@@ -19,19 +18,29 @@ import com.demo.android.connectory.presentation.component.EmployeeCardSkeleton
 
 @Composable
 fun HomeScreen(homeViewModel: HomeViewModel = hiltViewModel()) {
+    val uiState = homeViewModel.uiStateFlow.collectAsState().value
+    var userName by remember { mutableStateOf("") }
     Scaffold(
         topBar = { ConnectoryTopAppBar() },
         content = { padding ->
             Box(Modifier.padding(padding)) {
-                val uiState = homeViewModel.uiStateFlow.collectAsState().value
-                Content(uiState)
+                Column {
+                    OutlinedTextField(
+                        value = userName,
+                        onValueChange = { userName = it },
+                        Modifier
+                            .padding(5.dp)
+                            .fillMaxWidth()
+                    )
+                    Content(uiState, userName)
+                }
             }
         },
     )
 }
 
 @Composable
-private fun Content(uiState: HomeScreenUiState) {
+private fun Content(uiState: HomeScreenUiState, nameSearchQuery: String) {
     when (uiState) {
         is HomeScreenUiState.Loading -> BoxWithConstraints {
             LazyColumn {
@@ -42,7 +51,7 @@ private fun Content(uiState: HomeScreenUiState) {
         }
         is HomeScreenUiState.Loaded -> BoxWithConstraints {
             LazyColumn {
-                items(uiState.employees) {
+                items(uiState.employees.filter { it.fullName.contains(nameSearchQuery) }) {
                     EmployeeCard(employee = it)
                 }
             }
@@ -53,7 +62,5 @@ private fun Content(uiState: HomeScreenUiState) {
 
 @Composable
 private fun ConnectoryTopAppBar() {
-    TopAppBar(
-        title = { Text(text = stringResource(id = R.string.app_name)) }
-    )
+    TopAppBar(title = { Text(text = stringResource(id = R.string.app_name)) })
 }

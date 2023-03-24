@@ -7,8 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.demo.android.connectory.domain.usecase.FetchEmployeesUseCase
 import com.example.countify.util.Either
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -19,7 +18,6 @@ class HomeViewModel @Inject constructor(
 
     private val _uiStateFlow = MutableStateFlow<HomeScreenUiState>(HomeScreenUiState.Loading)
     val uiStateFlow = _uiStateFlow.asStateFlow()
-
     init {
         fetchEmployees()
     }
