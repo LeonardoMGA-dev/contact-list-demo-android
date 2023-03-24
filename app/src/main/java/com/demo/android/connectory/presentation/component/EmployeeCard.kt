@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -20,6 +21,7 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.demo.android.connectory.R
 import com.demo.android.connectory.domain.entity.Employee
+import com.valentinilk.shimmer.shimmer
 
 @Composable
 fun EmployeeCard(employee: Employee) {
@@ -63,11 +65,38 @@ fun EmployeeCard(employee: Employee) {
             }
             if (isExpanded) {
                 Spacer(modifier = Modifier.height(16.dp))
+                Divider()
+                Spacer(modifier = Modifier.height(16.dp))
                 Text(text = "Phone: ${employee.phoneNumber}", fontSize = 14.sp)
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(text = "Email: ${employee.emailAddress}", fontSize = 14.sp)
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(text = "Bio: ${employee.biography}", fontSize = 14.sp)
+            }
+        }
+    }
+}
+
+@Composable
+fun EmployeeCardSkeleton() {
+    Card(
+        shape = RoundedCornerShape(16.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .shimmer()
+            .padding(horizontal = 16.dp, vertical = 8.dp)
+    ) {
+        Column(
+            modifier = Modifier.padding(16.dp)
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Box(
+                    modifier = Modifier
+                        .clip(CircleShape)
+                        .shimmer()
+                        .size(72.dp)
+                )
+                Spacer(modifier = Modifier.width(16.dp))
             }
         }
     }
