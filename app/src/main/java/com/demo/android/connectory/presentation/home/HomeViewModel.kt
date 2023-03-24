@@ -1,6 +1,7 @@
 package com.demo.android.connectory.presentation.home
 
 import android.util.Log
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.demo.android.connectory.domain.usecase.FetchEmployeesUseCase
@@ -23,6 +24,7 @@ class HomeViewModel @Inject constructor(
         fetchEmployees()
     }
 
+    @VisibleForTesting
     fun fetchEmployees() {
         viewModelScope.launch {
             _uiStateFlow.value = HomeScreenUiState.Loading
