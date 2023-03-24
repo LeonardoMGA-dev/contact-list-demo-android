@@ -4,15 +4,14 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
-import com.demo.android.connectory.component.EmployeeCard
-import com.demo.android.connectory.ui.theme.ConnectoryTheme
-import com.demo.android.connectory.util.employeeFakeList
+import com.demo.android.connectory.presentation.home.HomeScreen
+import com.demo.android.connectory.presentation.theme.ConnectoryTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,12 +21,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    LazyColumn {
-                        items(employeeFakeList) {
-                            // TODO: implement appearing animation
-                            EmployeeCard(employee = it)
-                        }
-                    }
+                    HomeScreen()
                 }
             }
         }
