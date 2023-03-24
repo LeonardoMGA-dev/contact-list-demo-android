@@ -15,6 +15,7 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val fetchEmployeesUseCase: FetchEmployeesUseCase,
 ) : ViewModel() {
+
     val employees = mutableStateListOf<Employee>()
 
     fun fetchEmployees() {
