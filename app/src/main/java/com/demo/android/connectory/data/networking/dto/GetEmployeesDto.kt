@@ -1,6 +1,6 @@
 package com.demo.android.connectory.data.networking.dto
 
-import com.demo.android.connectory.domain.Employee
+import com.demo.android.connectory.domain.entity.Employee
 import com.google.gson.annotations.SerializedName
 
 data class GetEmployeesResponseDto(

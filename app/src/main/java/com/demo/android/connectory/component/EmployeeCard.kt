@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.demo.android.connectory.R
-import com.demo.android.connectory.domain.Employee
+import com.demo.android.connectory.domain.entity.Employee
 
 @Composable
 fun EmployeeCard(employee: Employee) {

@@ -1,6 +1,6 @@
 package com.demo.android.connectory.util
 
-import com.demo.android.connectory.domain.Employee
+import com.demo.android.connectory.domain.entity.Employee
 
 
 val employeeFakeList = listOf(
@@ -80,7 +80,8 @@ val employeeFakeList = listOf(
         "https://some.url/path14.jpg",
         "Designer",
         "CONTRACTOR"
-    ),Employee(
+    ),
+    Employee(
         "some-uuid-7",
         "David Kim",
         "5558889999",
@@ -90,7 +91,8 @@ val employeeFakeList = listOf(
         "https://some.url/path14.jpg",
         "Designer",
         "CONTRACTOR"
-    ),Employee(
+    ),
+    Employee(
         "some-uuid-7",
         "David Kim",
         "5558889999",
@@ -100,7 +102,8 @@ val employeeFakeList = listOf(
         "https://some.url/path14.jpg",
         "Designer",
         "CONTRACTOR"
-    ),Employee(
+    ),
+    Employee(
         "some-uuid-7",
         "David Kim",
         "5558889999",

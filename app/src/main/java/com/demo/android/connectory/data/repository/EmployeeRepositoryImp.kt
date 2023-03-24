@@ -2,7 +2,7 @@ package com.demo.android.connectory.data.repository
 
 import com.demo.android.connectory.data.networking.ConnectoryService
 import com.demo.android.connectory.data.networking.dto.toDomainEntity
-import com.demo.android.connectory.domain.Employee
+import com.demo.android.connectory.domain.entity.Employee
 import com.demo.android.connectory.domain.repository.EmployeeRepository
 import com.example.countify.util.Either
 import com.example.countify.util.ErrorEntity

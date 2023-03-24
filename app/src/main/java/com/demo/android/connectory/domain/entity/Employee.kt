@@ -1,4 +1,4 @@
-package com.demo.android.connectory.domain
+package com.demo.android.connectory.domain.entity
 
 data class Employee(
     val uuid: String,

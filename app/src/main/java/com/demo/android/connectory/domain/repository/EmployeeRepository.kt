@@ -1,6 +1,6 @@
 package com.demo.android.connectory.domain.repository
 
-import com.demo.android.connectory.domain.Employee
+import com.demo.android.connectory.domain.entity.Employee
 import com.example.countify.util.Either
 
 interface EmployeeRepository {
