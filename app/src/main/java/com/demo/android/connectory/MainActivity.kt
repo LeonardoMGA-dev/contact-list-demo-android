@@ -24,6 +24,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     LazyColumn {
                         items(employeeFakeList) {
+                            // TODO: implement appearing animation
                             EmployeeCard(employee = it)
                         }
                     }
