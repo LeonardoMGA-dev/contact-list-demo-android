@@ -3,10 +3,7 @@ package com.demo.android.connectory.presentation.home
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -51,7 +48,9 @@ private fun Content(uiState: HomeScreenUiState, nameSearchQuery: String) {
         }
         is HomeScreenUiState.Loaded -> BoxWithConstraints {
             LazyColumn {
-                items(uiState.employees.filter { it.fullName.contains(nameSearchQuery) }) {
+                items(uiState.employees.filter {
+                    it.fullName.lowercase().contains(nameSearchQuery)
+                }) {
                     EmployeeCard(employee = it)
                 }
             }
