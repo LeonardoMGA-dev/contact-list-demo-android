@@ -8,6 +8,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
@@ -17,7 +18,9 @@ object DataDiModule {
     @Singleton
     @Provides
     fun provideConnectoryService(): ConnectoryService {
-        return Retrofit.Builder().baseUrl("https://s3.amazonaws.com/sq-mobile-interview/").build()
+        return Retrofit.Builder().baseUrl("https://s3.amazonaws.com/sq-mobile-interview/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
             .create(ConnectoryService::class.java)
     }
 
