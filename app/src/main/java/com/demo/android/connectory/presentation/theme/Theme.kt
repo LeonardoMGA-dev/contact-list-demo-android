@@ -1,4 +1,4 @@
-package com.demo.android.connectory.ui.theme
+package com.demo.android.connectory.presentation.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme

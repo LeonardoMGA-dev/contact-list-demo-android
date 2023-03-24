@@ -1,4 +1,4 @@
-package com.demo.android.connectory.ui.theme
+package com.demo.android.connectory.presentation.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes
