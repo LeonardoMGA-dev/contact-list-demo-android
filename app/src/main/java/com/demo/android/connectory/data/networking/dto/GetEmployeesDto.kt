@@ -1,5 +1,6 @@
 package com.demo.android.connectory.data.networking.dto
 
+import com.demo.android.connectory.domain.Employee
 import com.google.gson.annotations.SerializedName
 
 data class GetEmployeesResponseDto(
@@ -23,3 +24,17 @@ data class EmployeeDto(
     @SerializedName("employee_type")
     val employeeType: String,
 )
+
+fun EmployeeDto.toDomainEntity(): Employee {
+    return Employee(
+        uuid,
+        fullName,
+        phoneNumber,
+        emailAddress,
+        biography,
+        photoUrlSmall,
+        photoUrlLarge,
+        team,
+        employeeType
+    )
+}
