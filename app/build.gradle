@@ -83,5 +83,10 @@ dependencies {
 
     // Skeleton
     implementation 'com.valentinilk.shimmer:compose-shimmer:1.0.4'
+
+    // Unit test
+    testImplementation "io.mockk:mockk:1.13.4"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
     
 }
