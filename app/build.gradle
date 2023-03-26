@@ -88,5 +88,8 @@ dependencies {
     testImplementation "io.mockk:mockk:1.13.4"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
-    
+
+    // Swipe to refresh
+    implementation 'com.google.accompanist:accompanist-swiperefresh:0.24.13-rc'
+
 }
