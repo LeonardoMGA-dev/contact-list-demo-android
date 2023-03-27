@@ -49,12 +49,11 @@ class HomeViewModel @Inject constructor(
                     })
                 }
                 is Either.Error -> {
-                    // TODO: Handle error case
+                    _uiStateFlow.value = HomeScreenUiState.Error("Ups!! there is an error...")
                 }
             }
         }
     }
-
 
     companion object {
         private const val DEFAULT_DEBOUNCE_TIME = 500L

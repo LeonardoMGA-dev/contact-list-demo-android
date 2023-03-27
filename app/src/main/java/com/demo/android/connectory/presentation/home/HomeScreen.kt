@@ -8,6 +8,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -75,7 +76,17 @@ private fun Content(uiState: HomeScreenUiState) {
                 }
             }
         }
+        is HomeScreenUiState.Error -> MessageScreen(message = uiState.errorMessage)
+    }
+}
 
+@Composable
+private fun MessageScreen(message: String) {
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier.fillMaxSize(),
+    ) {
+        Text(text = message)
     }
 }
 
