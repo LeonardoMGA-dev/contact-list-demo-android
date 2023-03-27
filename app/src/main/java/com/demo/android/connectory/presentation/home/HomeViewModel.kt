@@ -2,6 +2,7 @@ package com.demo.android.connectory.presentation.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.demo.android.connectory.R
 import com.demo.android.connectory.domain.usecase.FetchEmployeesUseCase
 import com.example.countify.util.Either
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -49,7 +50,7 @@ class HomeViewModel @Inject constructor(
                     })
                 }
                 is Either.Error -> {
-                    _uiStateFlow.value = HomeScreenUiState.Error("Ups!! there is an error...")
+                    _uiStateFlow.value = HomeScreenUiState.Error(R.string.error_message)
                 }
             }
         }

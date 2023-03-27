@@ -27,15 +27,12 @@ fun HomeScreen(homeViewModel: HomeViewModel = hiltViewModel()) {
     Scaffold(
         topBar = { ConnectoryTopAppBar() },
         content = { padding ->
-            SwipeRefresh(
-                state = rememberSwipeRefreshState(isRefreshing = refreshing),
-                onRefresh = {
-                    homeViewModel.fetchEmployees(employeeName = employeeName)
-                }) {
+            SwipeRefresh(state = rememberSwipeRefreshState(isRefreshing = refreshing), onRefresh = {
+                homeViewModel.fetchEmployees(employeeName = employeeName)
+            }) {
                 Box(Modifier.padding(padding)) {
                     Column {
-                        OutlinedTextField(
-                            value = employeeName,
+                        OutlinedTextField(value = employeeName,
                             onValueChange = {
                                 employeeName = it
                                 homeViewModel.searchDebounce(employeeName)
@@ -43,14 +40,12 @@ fun HomeScreen(homeViewModel: HomeViewModel = hiltViewModel()) {
                             Modifier
                                 .padding(5.dp)
                                 .fillMaxWidth(),
-                            label = { Text("Employee name") },
+                            label = { Text(stringResource(id = R.string.employee_name)) },
                             leadingIcon = {
                                 Icon(
-                                    imageVector = Icons.Default.Search,
-                                    contentDescription = null
+                                    imageVector = Icons.Default.Search, contentDescription = null
                                 )
-                            }
-                        )
+                            })
                         Content(uiState)
                     }
                 }
@@ -62,21 +57,35 @@ fun HomeScreen(homeViewModel: HomeViewModel = hiltViewModel()) {
 @Composable
 private fun Content(uiState: HomeScreenUiState) {
     when (uiState) {
-        is HomeScreenUiState.Loading -> BoxWithConstraints {
-            LazyColumn {
-                items(7) {
-                    EmployeeCardSkeleton()
-                }
+        is HomeScreenUiState.Loading -> LoadingScreen()
+        is HomeScreenUiState.Loaded -> LoadedScreen(uiState)
+        is HomeScreenUiState.Error -> MessageScreen(message = stringResource(id = uiState.errorMessage))
+    }
+}
+
+@Composable
+private fun LoadingScreen() {
+    BoxWithConstraints {
+        LazyColumn {
+            items(7) {
+                EmployeeCardSkeleton()
             }
         }
-        is HomeScreenUiState.Loaded -> BoxWithConstraints {
+    }
+}
+
+@Composable
+private fun LoadedScreen(uiState: HomeScreenUiState.Loaded) {
+    if (uiState.employees.isEmpty()) {
+        MessageScreen(message = stringResource(id = R.string.no_employees_found_message))
+    } else {
+        BoxWithConstraints {
             LazyColumn {
                 items(uiState.employees) {
                     EmployeeCard(employee = it)
                 }
             }
         }
-        is HomeScreenUiState.Error -> MessageScreen(message = uiState.errorMessage)
     }
 }
 
@@ -86,7 +95,7 @@ private fun MessageScreen(message: String) {
         contentAlignment = Alignment.Center,
         modifier = Modifier.fillMaxSize(),
     ) {
-        Text(text = message)
+        Text(message)
     }
 }
 
