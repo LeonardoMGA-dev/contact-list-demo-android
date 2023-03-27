@@ -37,7 +37,7 @@ fun HomeScreen(homeViewModel: HomeViewModel = hiltViewModel()) {
                             value = employeeName,
                             onValueChange = {
                                 employeeName = it
-                                homeViewModel.fetchEmployees(employeeName, showLoading = false)
+                                homeViewModel.searchDebounce(employeeName)
                             },
                             Modifier
                                 .padding(5.dp)
