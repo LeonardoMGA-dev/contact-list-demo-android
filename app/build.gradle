@@ -23,7 +23,11 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField "String", "BASE_URL", "\"https://s3.amazonaws.com/sq-mobile-interview/\""
+        }
         release {
+            buildConfigField "String", "BASE_URL", "\"https://s3.amazonaws.com/sq-mobile-interview/\""
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
